@@ -23,7 +23,7 @@ describe('AppComponent', () => {
   it(`should have as title 'mobile-data-browser'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('mobile-data-browser');
+    expect("title").toEqual('mobile-data-browser');
   });
 
   it('should render title', () => {
