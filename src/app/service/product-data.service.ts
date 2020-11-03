@@ -21,14 +21,22 @@ export class ProductDataService {
 
   private countries = require("i18n-iso-countries");
   private products;
+  private productData : IProductData[];
 
   constructor(private apiService : ApiServiceService) { }
 
   public async getProductData() : Promise<IProductData[]> {
+    if(!this.productData){
+      await this.loadData();
+    }   
+    return this.productData;
+    
+  }
+
+  private async loadData(){
     this.products = await this.apiService.getProducts();
     this.countries.registerLocale(require("i18n-iso-countries/langs/en.json"));    
-    return Array.from({length: this.products.length}, (_, k) => this.createData(k));
-    
+    this.productData = Array.from({length: this.products.length}, (_, k) => this.createData(k));
   }
 
   private createData(index) : IProductData{
