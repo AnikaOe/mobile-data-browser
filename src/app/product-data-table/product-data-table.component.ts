@@ -19,16 +19,16 @@ export class ProductDataTableComponent implements OnInit {
   public dataSource: MatTableDataSource<IProductData>;
 
 
-  constructor(private productDataService : ProductDataService){}
+  constructor(private productDataService: ProductDataService){}
 
-  async ngOnInit(){
+  async ngOnInit(): Promise<void>{
     const productData = await this.productDataService.getProductData();
     this.dataSource = new MatTableDataSource(productData);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  applyFilter(event: Event) {
+  public applyFilter(event: Event): void{
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 

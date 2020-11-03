@@ -16,10 +16,10 @@ export class ApiServiceService {
   constructor(private http: HttpClient , private snackBar: MatSnackBar ){ }
 
 
-  getProducts(){
+  public getProducts(){
     return new Promise(resolve => {
-      this.http.post( apiURL.concat('/api/package/search'), {"msisdn":""}, {headers: {'Content-Type': 'application/json'}})
-      .subscribe(data => {        
+      this.http.post( apiURL.concat('/api/package/search'), {msisdn: ''}, {headers: {'Content-Type': 'application/json'}})
+      .subscribe(data => {
         resolve(data);
       }, async error => {
         this.showError(error);
@@ -28,8 +28,8 @@ export class ApiServiceService {
     });
   }
 
-  private showError(error){
-    this.snackBar.open("Couldn't load data", "OK", {
+  private showError(error): void{
+    this.snackBar.open('Could not load data', 'OK', {
       duration: 2000,
     });
   }
